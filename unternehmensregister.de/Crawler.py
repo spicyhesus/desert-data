@@ -12,7 +12,7 @@ def trade_spider(max_pages):
     df_deposit_tree = pd.DataFrame(columns=['Deposit_tree_Links'])
     df_document = pd.DataFrame(columns=['Document_Links'])
     while page <=max_pages :
-        url="https://www.unternehmensregister.de/ureg/result.html;jsessionid=F3F0340FF146154A211EBDCBB798DD9E.web03-1?submitaction=pathnav&page."+str(page)+"=page"
+        url="https://www.unternehmensregister.de/ureg/result.html;jsessionid=BFEEF9F7B07620A3ECCC47EC1C80DCA1.web01-1?submitaction=pathnav&page."+str(page)+"=page"
         print(url)
         df_pages.loc[len(df_register)] = url
         source_code= requests.get(url)
@@ -21,7 +21,7 @@ def trade_spider(max_pages):
         for data in soup.findAll('div', attrs={'class': 'container result_container global-search'}):
                 links= data.findAll('a')
                 for a in links :
-                    embeded_url=parse.urljoin("https://www.unternehmensregister.de/ureg/result.html;jsessionid=F3F0340FF146154A211EBDCBB798DD9E.web03-1?submitaction"
+                    embeded_url=parse.urljoin("https://www.unternehmensregister.de/ureg/result.html;jsessionid=BFEEF9F7B07620A3ECCC47EC1C80DCA1.web01-1?submitaction"
                                               ,a['href'])
                     if "registerPortalAdvice" in embeded_url :
                         df_register.loc[len(df_register)] = embeded_url
@@ -57,7 +57,7 @@ def trade_spider(max_pages):
     else:
         df_document.to_csv("Document_queue.csv")
 
-url="https://www.unternehmensregister.de/ureg/result.html;jsessionid=F3F0340FF146154A211EBDCBB798DD9E.web03-1?submitaction=pathnav&page.1=page"
+url="https://www.unternehmensregister.de/ureg/result.html;jsessionid=BFEEF9F7B07620A3ECCC47EC1C80DCA1.web01-1?submitaction=pathnav&page.1=page"
 source_code= requests.get(url)
 plain_text = source_code.text
 soup = BeautifulSoup(plain_text,"html.parser")

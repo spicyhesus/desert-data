@@ -57,10 +57,12 @@ def trade_spider(max_pages):
     else:
         df_document.to_csv("Document_queue.csv")
 
-url="https://www.bundesanzeiger.de/pub/de/suchen2"
+url="https://www.bundesanzeiger.de/pub/de/suchen2?35"
 source_code= requests.get(url)
 plain_text = source_code.text
 soup = BeautifulSoup(plain_text,"html.parser")
+dom = etree.HTML(str(soup))
+#pages = dom.xpath('//*[@id="content"]/section[2]/div/div/div/div/div[5]/div[1]/span/text()')
 pages = soup.find('div',attrs={'class': 'page_count'}).getText()
 print(pages)
 res=[int(s) for s in pages.split() if s.isdigit()]

@@ -29,10 +29,15 @@ for row in df["Deposit_tree_Links"].values :
     else :
 
         district_court = re.sub(r'.', '', district_court[0].strip(), count=15)
-        district = re.search('(.+?)H', district_court)
+        print(district_court)
 
-        district = district.group(1).strip()
-        reg_number = re.sub(r'.', '', district_court, count=len(district) + 1)
+        district = re.search('([^\s]+)', district_court)
+        if district is None :
+            district = "null"
+            reg_number = "null"
+        else :
+            district = district.group(1).strip()
+            reg_number = re.sub(r'.', '', district_court, count=len(district) + 1)
         print(district)
         print(reg_number)
 
