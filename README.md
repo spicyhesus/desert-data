@@ -47,4 +47,9 @@ then click on the second page then back on the first page
 	Documents.xlsx :containing scraped Documents data  
 	General.xlsx : containing scraped pagination data (general data about companies)  
 	Register.xlsx : containing scraped register data  
+	
+	
+Automated version usage :  
+In the Automated_Crawler.py file modify the start and end date variables (statements in line 40 and 41 ) to the desired value then execute the script , the greater the number of pages found the longer it takes to crawl everything.  
+after running the script the same csv files will be created and you can then run the scrapers .  
 
